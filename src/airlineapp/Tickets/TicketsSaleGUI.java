@@ -64,7 +64,7 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
         lblSource.setText("Source");
         lblSource.setName("lblSource"); // NOI18N
 
-        cbxSource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USA", "Mexico", "Panama", "Colombia" }));
+        cbxSource.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USA", "Mexico", "Panama", "Colombia", "Costa Rica" }));
         cbxSource.setName("cbxSource"); // NOI18N
         cbxSource.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +75,7 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
         lblDestination.setText("Destination");
         lblDestination.setName("lblDestination"); // NOI18N
 
-        cbxDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USA", "Mexico", "Panama", "Colombia" }));
+        cbxDestination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USA", "Mexico", "Panama", "Colombia", "Costa Rica" }));
         cbxDestination.setName("cbxDestination"); // NOI18N
 
         lblDepartureTime.setText("Departure Time");
@@ -253,6 +253,9 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
         String depTime = cbxDepartureTime.getSelectedItem().toString();
         String arrTime = cbxArrivalTime.getSelectedItem().toString();
         String fClass = cbxFlightClass.getSelectedItem().toString();
+        if(Integer.parseInt(txtPassengers.getText()) == 0){
+            JOptionPane.showMessageDialog(null, "The minimun number of passenger is 1", "Incorrect Number", 0);
+        }else { 
         String passengers = txtPassengers.getText();
         String owner = ownerVerification(txtTicketOwner.getText());
         try {
@@ -266,6 +269,7 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
+        }
     }//GEN-LAST:event_btnBookActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed

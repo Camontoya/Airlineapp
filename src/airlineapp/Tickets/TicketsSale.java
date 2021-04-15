@@ -18,7 +18,7 @@ public class TicketsSale {
                     id, date, source, destination, depTime, arrTime, fClass,
                     passengers, owner);
             new DBManagement().saveBook(t);
-            JOptionPane.showMessageDialog(null, "Booked!");
+            //JOptionPane.showMessageDialog(null, "Booked!");
             return t;
         } catch (Exception e) {
             System.err.println(e);
