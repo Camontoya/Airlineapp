@@ -5,14 +5,22 @@ import airlineapp.Authentication.userValidation;
 import airlineapp.ClientMenu.ClientMenuGUI;
 import airlineapp.Login.LoginSession;
 import airlineapp.Registration.NewPerson;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class TicketsSaleGUI extends javax.swing.JFrame {
+    
+    private hiloTickets hilo = new hiloTickets();
+    private ExecutorService service;
     public TicketsSaleGUI() {
         initComponents();
         this.setTitle("Buy tickets!");
         this.setLocationRelativeTo(null);
+        service = Executors.newFixedThreadPool(1);
+        service.submit(hilo);
+             
     }
     
     public String ownerVerification(String owner){
@@ -290,6 +298,7 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TicketsSaleGUI().setVisible(true);
+                
             }
         });
     }
