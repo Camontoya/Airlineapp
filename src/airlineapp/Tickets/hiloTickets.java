@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Carlos Elizondo
+ * @author Caro Montoya
  */
 public class hiloTickets implements Runnable {
 
