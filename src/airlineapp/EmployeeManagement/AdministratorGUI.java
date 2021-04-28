@@ -1,6 +1,10 @@
 package airlineapp.EmployeeManagement;
 
 import airlineapp.StartWindowGUI;
+import airlineapp.WebSockets.Tester;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AdministratorGUI extends javax.swing.JFrame {
 
@@ -19,6 +23,7 @@ public class AdministratorGUI extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnPayment = new javax.swing.JButton();
         btnEmployeeManagement = new javax.swing.JButton();
+        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,14 +56,17 @@ public class AdministratorGUI extends javax.swing.JFrame {
             }
         });
 
+        btnTest.setText("Test");
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExit)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -72,8 +80,15 @@ public class AdministratorGUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JLtitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnTest)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JLtitulo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +102,9 @@ public class AdministratorGUI extends javax.swing.JFrame {
                     .addComponent(btnPayment)
                     .addComponent(btnEmployeeManagement))
                 .addGap(51, 51, 51)
-                .addComponent(btnExit)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnExit)
+                    .addComponent(btnTest))
                 .addContainerGap())
         );
 
@@ -109,6 +126,19 @@ public class AdministratorGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnEmployeeManagementActionPerformed
 
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+//        new DBTesting().setVisible(true);
+//        this.dispose();
+        Tester t = new Tester();
+        t.start();
+        Connector c = new Connector();
+        try {
+            c.connectingDB();
+        } catch (IOException ex) {
+            Logger.getLogger(AdministratorGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTestActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -123,5 +153,6 @@ public class AdministratorGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnEmployeeManagement;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnTest;
     // End of variables declaration//GEN-END:variables
 }

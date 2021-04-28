@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class TicketsSaleGUI extends javax.swing.JFrame {
     
-    private hiloTickets hilo = new hiloTickets();
+    private hiloTickets hilo = new hiloTickets(this);
     private ExecutorService service;
     public TicketsSaleGUI() {
         initComponents();
@@ -20,7 +20,6 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         service = Executors.newFixedThreadPool(1);
         service.submit(hilo);
-             
     }
     
     public String ownerVerification(String owner){
