@@ -13,13 +13,12 @@ import javax.swing.JOptionPane;
 public class TicketsSaleGUI extends javax.swing.JFrame {
     
     private hiloTickets hilo = new hiloTickets(this);
-    private ExecutorService service;
+    
     public TicketsSaleGUI() {
         initComponents();
         this.setTitle("Buy tickets!");
         this.setLocationRelativeTo(null);
-        service = Executors.newFixedThreadPool(1);
-        service.submit(hilo);
+        hilo.start();
     }
     
     public String ownerVerification(String owner){
@@ -275,7 +274,10 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
                 new JFrame(), "Error booking, try later!",
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         }
+        hilo.stop();
         this.dispose();
+        
+        
         }
     }//GEN-LAST:event_btnBookActionPerformed
 
@@ -285,7 +287,9 @@ public class TicketsSaleGUI extends javax.swing.JFrame {
             this.dispose();
         } else {
             new ClientMenuGUI().setVisible(true);
+            hilo.stop();
             this.dispose();
+            
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
